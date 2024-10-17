@@ -13,10 +13,10 @@ int	ft_print_str(char *str)
 	i = 0;
 	if (!str)
 	{
-		write(1, '(null)', 6);
+		write(1, "(null)", 6);
 		return (6);
 	}
-	while (!str[i])
+	while (str[i])
 	{
 		write(1, &str[i], 1);
 		i++;
