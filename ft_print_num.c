@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_print_num.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alvamart <alvamart@student.42madrid.com>   #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024-10-18 10:01:51 by alvamart          #+#    #+#             */
+/*   Updated: 2024-10-18 10:01:51 by alvamart         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 size_t	ft_strlen(const char *str)
@@ -10,7 +22,7 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-int ft_print_ubase(unsigned long int nbr, char *base)
+int	ft_print_ubase(unsigned int nbr, char *base)
 {
 	int		len_printf;
 	int		len;
@@ -22,7 +34,7 @@ int ft_print_ubase(unsigned long int nbr, char *base)
 	{
 		c = base[nbr];
 		write(1, &c, 1);
-		len_printf+= 1;
+		len_printf += 1;
 	}
 	if (nbr >= len)
 	{
@@ -32,7 +44,7 @@ int ft_print_ubase(unsigned long int nbr, char *base)
 	return (len_printf);
 }
 
-int ft_print_base(unsigned long int nbr, char *base)
+int	ft_print_base(int nbr, char *base)
 {
 	int		len_printf;
 	int		len;
@@ -44,13 +56,13 @@ int ft_print_base(unsigned long int nbr, char *base)
 	{
 		nbr = -nbr;
 		write(1, '-', 1);
-		len_printf+= 1;
+		len_printf += 1;
 	}
 	if (nbr < len)
 	{
 		c = base[nbr];
 		write(1, &c, 1);
-		len_printf+= 1;
+		len_printf += 1;
 	}
 	if (nbr >= len)
 	{
