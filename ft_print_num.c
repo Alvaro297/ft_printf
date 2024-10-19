@@ -60,14 +60,28 @@ int ft_print_base(unsigned long int nbr, char *base)
 	return (len_printf);
 }
 
-int	ft_printf_itoa(int nbr)
+int	ft_printf_nbr(int nb)
 {
-	char	*str;
-	int		len;
+	int	len;
 
-	str = ft_itoa(nbr);
-	len = ft_strlen(str);
-	write(1, str, len);
-	free(str);
+	len = 0;
+	if (nb == -2147483648)
+		return (write(1, "-2147483648", 11));
+	else if (nb < 0)
+	{
+		len += write(1, '-', 1);
+		nb = -nb;
+		len += ft_putnbr(nb);
+	}
+	else if (nb > 9)
+	{
+		len += ft_putnbr(nb / 10);
+		len += ft_putnbr(nb % 10);
+	}
+	else
+	{
+		nb += 48;
+		len += write(1, &nb, 1);
+	}
 	return (len);
 }
