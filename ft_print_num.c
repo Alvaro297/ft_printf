@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-size_t	ft_strlen(const char *str)
+size_t	ft_strlen(char *str)
 {
 	size_t	i;
 
@@ -22,11 +22,11 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-int	ft_print_ubase(unsigned int nbr, char *base)
+int	ft_print_ubase(unsigned long int nbr, char *base)
 {
-	int		len_printf;
-	int		len;
-	char	c;
+	int				len_printf;
+	unsigned int	len;
+	char			c;
 
 	len = ft_strlen(base);
 	len_printf = 0;
@@ -38,8 +38,8 @@ int	ft_print_ubase(unsigned int nbr, char *base)
 	}
 	if (nbr >= len)
 	{
-		ft_putnbr_ubase(nbr / len, base);
-		ft_putnbr_ubase(nbr % len, base);
+		len_printf += ft_putnbr_ubase(nbr / len, base);
+		len_printf += ft_putnbr_ubase(nbr % len, base);
 	}
 	return (len_printf);
 }
@@ -66,8 +66,8 @@ int	ft_print_base(int nbr, char *base)
 	}
 	if (nbr >= len)
 	{
-		ft_putnbr_base(nbr / len, base);
-		ft_putnbr_base(nbr % len, base);
+		len_printf += ft_putnbr_base(nbr / len, base);
+		len_printf += ft_putnbr_base(nbr % len, base);
 	}
 	return (len_printf);
 }

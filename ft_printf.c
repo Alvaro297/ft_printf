@@ -28,11 +28,11 @@ int	check_params(char param, va_list arg)
 	else if (param == 'd' || param == 'i')
 		return (ft_printf_nbr(va_arg(arg, int)));
 	else if (param == 'u')
-		return ft_print_ubase((unsigned long int)va_arg(arg, unsigned int), "0123456789");
+		return (ft_print_ubase((unsigned long int)va_arg(arg, unsigned int), "0123456789"));
 	else if (param == 'x')
-		return ft_print_base(va_arg(arg, int), "0123456789abcdef");
+		return (ft_print_base(va_arg(arg, int), "0123456789abcdef"));
 	else if (param == 'X')
-		return ft_print_base(va_arg(arg, int), "0123456789ABCDEF");
+		return (ft_print_base(va_arg(arg, int), "0123456789ABCDEF"));
 	return (0);
 }
 
