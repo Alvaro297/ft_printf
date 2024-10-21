@@ -29,5 +29,6 @@ int		ft_print_base(int nbr, char *base);
 int		ft_printf_nbr(int nbr);
 int		ft_print_ubase(unsigned long int nbr, char *base);
 size_t	ft_strlen(char *str);
+int		ft_print_pbase(unsigned long int nbr, char *base);
 //******//
 #endif

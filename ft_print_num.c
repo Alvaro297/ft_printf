@@ -44,6 +44,17 @@ int	ft_print_ubase(unsigned long int nbr, char *base)
 	return (len_printf);
 }
 
+int	ft_print_pbase(unsigned long int nbr, char *base)
+{
+	if (nbr == 0)
+		return (write(1, "(nil)", 5));
+	else
+	{
+		write(1, "0x", 2);
+		return (2 + ft_print_ubase(nbr, base));
+	}
+}
+
 int	ft_print_base(int nbr, char *base)
 {
 	int		len_printf;

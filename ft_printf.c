@@ -21,19 +21,13 @@ int	check_params(char param, va_list arg)
 	else if (param == 's')
 		return (ft_print_str(va_arg(arg, char *)));
 	else if (param == 'p')
-	{
-		if (va_arg(arg, unsigned long int) == 0)
-			return (write(1, "(nil)", 5));
-		else
-		{
-			write(1, "0x", 2);
-			return (2 + ft_print_ubase(va_arg(arg, unsigned long int), "0123456789abcdef"));
-		}
-	}
+		return (ft_print_pbase(va_arg(arg,
+					unsigned long int), "0123456789abcdef"));
 	else if (param == 'd' || param == 'i')
 		return (ft_printf_nbr(va_arg(arg, int)));
 	else if (param == 'u')
-		return (ft_print_ubase((unsigned long int)va_arg(arg, unsigned int), "0123456789"));
+		return (ft_print_ubase((unsigned long int)
+				va_arg(arg, unsigned int), "0123456789"));
 	else if (param == 'x')
 		return (ft_print_base(va_arg(arg, int), "0123456789abcdef"));
 	else if (param == 'X')
@@ -68,9 +62,46 @@ int	ft_printf(const char *format, ...)
 	va_end(arg);
 	return (len);
 }
-
+/*
 int main(void)
 {
+	int ret_ft;
+    int ret_std;
+
+    // Pruebas con ft_printf y printf, capturando los valores de retorno
+    ret_ft = ft_printf("Probando enteros: %d\n", 42);
+    ret_std = printf("Probando enteros: %d\n", 42);
+    printf("ft_printf devolvió: %d, printf devolvió: %d\n\n", ret_ft, ret_std);
+
+    ret_ft = ft_printf("Probando negativos: %d\n", -42);
+    ret_std = printf("Probando negativos: %d\n", -42);
+    printf("ft_printf devolvió: %d, printf devolvió: %d\n\n", ret_ft, ret_std);
+
+	ret_ft = ft_printf("Probando porcentajes: %%");
+    ret_std = printf("Probando negativos: %%");
+    printf("ft_printf devolvió: %d, printf devolvió: %d\n\n", ret_ft, ret_std);
+
+    ret_ft = ft_printf("Probando cadenas: %s\n", "Hola, mundo!");
+    ret_std = printf("Probando cadenas: %s\n", "Hola, mundo!");
+    printf("ft_printf devolvió: %d, printf devolvió: %d\n\n", ret_ft, ret_std);
+
+    ret_ft = ft_printf("Probando caracteres: %c\n", 'A');
+    ret_std = printf("Probando caracteres: %c\n", 'A');
+    printf("ft_printf devolvió: %d, printf devolvió: %d\n\n", ret_ft, ret_std);
+
+    ret_ft = ft_printf("Probando hexadecimales: %x\git@vogsphere-v2.42madrid.com:vogsphere/intra-uuid-a6ff9b9c-98c5-4e61-9379-d4ad95ef274a-6138553-alvamart %d\n\n", ret_ft, ret_std);
+
+    ret_ft = ft_printf("Probando punteros: %p\n", (void*)main);
+    ret_std = printf("Probando punteros: %p\n", (void*)main);
+    printf("ft_printf devolvió: %d, printf devolvió: %d\n\n", ret_ft, ret_std);
+
+    ret_ft = ft_printf("Probando unsigned: %u\n", 3000000000U);
+    ret_std = printf("Probando unsigned: %u\n", 3000000000U);
+    printf("ft_printf devolvió: %d, printf devolvió: %d\n\n", ret_ft, ret_std);
+
+    ret_ft = ft_printf("Probando porcentaje: %%\n");
+    ret_std = printf("Probando porcentaje: %%\n");
+    printf("ft_printf devolvió: %d, printf devolvió: %d\n\n", ret_ft, ret_std);
     // Pruebas básicas con ft_printf
     ft_printf("Probando enteros: %d\n", 42);
     ft_printf("Probando negativos: %d\n", -42);
@@ -94,3 +125,4 @@ int main(void)
 
     return 0;
 }
+*/
