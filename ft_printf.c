@@ -15,15 +15,20 @@
 int	check_params(char param, va_list arg)
 {
 	if (param == 'c')
-		return (ft_print_char(va_arg(arg, char)));
+		return (ft_print_char(va_arg(arg, int)));
 	else if (param == '%')
 		return (ft_print_char('%'));
 	else if (param == 's')
 		return (ft_print_str(va_arg(arg, char *)));
 	else if (param == 'p')
 	{
-		write(1, "0x", 2);
-		return (2 + ft_print_ubase(va_arg(arg, unsigned long int), "0123456789abcdef"));
+		if (va_arg(arg, unsigned long int) == 0)
+			return (write(1, "(nil)", 5));
+		else
+		{
+			write(1, "0x", 2);
+			return (2 + ft_print_ubase(va_arg(arg, unsigned long int), "0123456789abcdef"));
+		}
 	}
 	else if (param == 'd' || param == 'i')
 		return (ft_printf_nbr(va_arg(arg, int)));

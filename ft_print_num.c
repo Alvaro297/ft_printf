@@ -38,8 +38,8 @@ int	ft_print_ubase(unsigned long int nbr, char *base)
 	}
 	if (nbr >= len)
 	{
-		len_printf += ft_putnbr_ubase(nbr / len, base);
-		len_printf += ft_putnbr_ubase(nbr % len, base);
+		len_printf += ft_print_ubase(nbr / len, base);
+		len_printf += ft_print_ubase(nbr % len, base);
 	}
 	return (len_printf);
 }
@@ -55,7 +55,7 @@ int	ft_print_base(int nbr, char *base)
 	if (nbr < 0)
 	{
 		nbr = -nbr;
-		write(1, '-', 1);
+		write(1, "-", 1);
 		len_printf += 1;
 	}
 	if (nbr < len)
@@ -66,8 +66,8 @@ int	ft_print_base(int nbr, char *base)
 	}
 	if (nbr >= len)
 	{
-		len_printf += ft_putnbr_base(nbr / len, base);
-		len_printf += ft_putnbr_base(nbr % len, base);
+		len_printf += ft_print_base(nbr / len, base);
+		len_printf += ft_print_base(nbr % len, base);
 	}
 	return (len_printf);
 }
@@ -81,14 +81,14 @@ int	ft_printf_nbr(int nb)
 		return (write(1, "-2147483648", 11));
 	else if (nb < 0)
 	{
-		len += write(1, '-', 1);
+		len += write(1, "-", 1);
 		nb = -nb;
-		len += ft_putnbr(nb);
+		len += ft_printf_nbr(nb);
 	}
 	else if (nb > 9)
 	{
-		len += ft_putnbr(nb / 10);
-		len += ft_putnbr(nb % 10);
+		len += ft_printf_nbr(nb / 10);
+		len += ft_printf_nbr(nb % 10);
 	}
 	else
 	{
