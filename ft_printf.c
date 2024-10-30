@@ -32,7 +32,7 @@ int	check_params(char param, va_list arg)
 		return (ft_print_ubase(va_arg(arg, unsigned int), "0123456789abcdef"));
 	else if (param == 'X')
 		return (ft_print_ubase(va_arg(arg, unsigned int), "0123456789ABCDEF"));
-	return (-1);
+	return (0);
 }
 
 int	ft_printf(char const *format, ...)
@@ -52,10 +52,7 @@ int	ft_printf(char const *format, ...)
 		else
 		{
 			ret = check_params(format[++i], arg);
-			if (ret >= 0)
-				len += ret;
-			else
-				i--;
+			len += ret;
 		}
 		i++;
 	}
@@ -69,29 +66,28 @@ int ret_ft;
 	int ret_std;
 
 	// Pruebas con combinaciones mixtas
-	ret_ft = ft_printf("Combinando: entero: %d, cadena: %s, char: %c, 
-			hex: %x, unsigned: %u, porcentaje: %%\n",
-			 42, "Hello", 'A', 255, 3000000000U);
+	ret_ft = ft_printf("Combinando: entero: %d, cadena: %s, char: %c, hex: %x, 
+	unsigned: %u, porcentaje: %%\n", 42, "Hello", 'A', 255, 3000000000U);
 	ret_std = printf("Combinando: entero: %d, cadena: %s, char: %c, hex: %x, 
-			unsigned: %u, porcentaje: %%\n", 42, "Hello", 'A', 255, 3000000000U);
+	unsigned: %u, porcentaje: %%\n", 42, "Hello", 'A', 255, 3000000000U);
 	printf("ft_printf devolvió: %d, printf devolvió: %d\n\n", ret_ft, ret_std);
 
-	ret_ft = ft_printf("Mix: char: %c, puntero: %p, unsigned: %u, negativo: %d, 
+	ret_ft = ft_printf("Mix: char: %c, puntero: %p, unsigned: %u, negativo: %d,
 			cadena vacía: %s\n", 'Z', (void*)main, 123456789U, -123, "");
-	ret_std = printf("Mix: char: %c, puntero: %p, unsigned: %u, negativo: 
-			%d, cadena vacía: %s\n", 'Z', (void*)main, 123456789U, -123, "");
+	ret_std = printf("Mix: char: %c, puntero: %p, unsigned: %u, negativo: %d,
+			cadena vacía: %s\n", 'Z', (void*)main, 123456789U, -123, "");
 	printf("ft_printf devolvió: %d, printf devolvió: %d\n\n", ret_ft, ret_std);
 
-	ret_ft = ft_printf("Hexadecimal en mayúsculas 
-		y minúsculas: %x %X\n", 48879, 48879);
-	ret_std = printf("Hexadecimal en mayúsculas 
-		y minúsculas: %x %X\n", 48879, 48879);
+	ret_ft = ft_printf("Hexadecimal en mayúsculas y 
+	minúsculas: %x %X\n", 48879, 48879);
+	ret_std = printf("Hexadecimal en mayúsculas y 
+	minúsculas: %x %X\n", 48879, 48879);
 	printf("ft_printf devolvió: %d, printf devolvió: %d\n\n", ret_ft, ret_std);
 
-	ret_ft = ft_printf("Mixto con límites: int min: %d, int max:
-			%d, unsigned max: %u\n", -2147483647, 2147483647, 4294967295U);
-	ret_std = printf("Mixto con límites: int min: %d, int max: %d,
-			unsigned max: %u\n", -2147483647, 2147483647, 4294967295U);
+	ret_ft = ft_printf("Mixto con límites: int min: %d, int max:%d, unsigned max:
+			%u\n", -2147483647, 2147483647, 4294967295U);
+	ret_std = printf("Mixto con límites: int min: %d, int max: %d,unsigned max:
+			%u\n", -2147483647, 2147483647, 4294967295U);
 	printf("ft_printf devolvió: %d, printf devolvió: %d\n\n", ret_ft, ret_std);
 
 	ret_ft = ft_printf("Probando porcentaje: %%\n");
